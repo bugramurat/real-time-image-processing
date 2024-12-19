@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Image Processing</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <div class="flex-container">
+        <div class="menu-container flex-item">
+            <h1>Real-Time Image Processing</h1>
+            <form id="upload-form" class="upload-container">
+                <label for="image">Upload an image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+                <div class="up-down-img">
+                    <button id="upload-button" type="submit" class="button">Upload</button>
+                    <button id="download-processed-button" type="button" class="button" style="display: none;">Download Processed Image</button>
+                </div>
+            </form>
+            <div class="controls" id="controls" style="display: none;">
+                <div class="controls-top">
+                    <div class="control-group-c">
+                        <label for="color-format">Color Format:</label>
+                        <select id="color-format" name="color-format">
+                            <option value="rgb" selected>RGB</option>
+                            <option value="hsv">HSV</option>
+                            <option value="lab">LAB</option>
+                        </select>
+                        <button id="download-array-button" class="button" style="display: none;">Download Image Array</button>
+                    </div>
+                </div>
+                <div class="controls-bottom">
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="brightness">Brightness:</label>
+                            <button class="reset-button button" data-target="brightness" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="brightness" min="0.5" max="2" step="0.1" value="1">
+                        <span id="brightness-value">1</span>
+                    </div>
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="contrast">Contrast:</label>
+                            <button class="reset-button button" data-target="contrast" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="contrast" min="0.5" max="2" step="0.1" value="1">
+                        <span id="contrast-value">1</span>
+                    </div>
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="exposure">Exposure:</label>
+                            <button class="reset-button button" data-target="exposure" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="exposure" min="0.5" max="2" step="0.1" value="1">
+                        <span id="exposure-value">1</span>
+                    </div>
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="shadows">Shadows:</label>
+                            <button class="reset-button button" data-target="shadows" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="shadows" min="0.5" max="2" step="0.1" value="1">
+                        <span id="shadows-value">1</span>
+                    </div>
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="highlights">Highlights:</label>
+                            <button class="reset-button button" data-target="highlights" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="highlights" min="0.5" max="2" step="0.1" value="1">
+                        <span id="highlights-value">1</span>
+                    </div>
+                </div>
+                <div class="controls-bottom">
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="sharpness">Sharpness:</label>
+                            <button class="reset-button button" data-target="sharpness" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="sharpness" min="0" max="10" step="0.1" value="1">
+                        <span id="sharpness-value">1</span>
+                    </div>
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="definition">Definition:</label>
+                            <button class="reset-button button" data-target="definition" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="definition" min="0" max="10" step="0.1" value="1">
+                        <span id="definition-value">1</span>
+                    </div>
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="blur">Blur:</label>
+                            <button class="reset-button button" data-target="blur" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="blur" min="0" max="10" step="0.1" value="0">
+                        <span id="blur-value">0</span>
+                    </div>
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="brilliance">Brilliance:</label>
+                            <button class="reset-button button" data-target="brilliance" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="brilliance" min="0" max="2" step="0.1" value="1">
+                        <span id="brilliance-value">1</span>
+                    </div>
+                </div>
+                <div class="controls-bottom">
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="hue">Hue:</label>
+                            <button class="reset-button button" data-target="hue" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="hue" min="0" max="180" step="1" value="0">
+                        <span id="hue-value">0</span>
+                    </div>
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="saturation">Saturation:</label>
+                            <button class="reset-button button" data-target="saturation" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="saturation" min="0" max="2" step="0.1" value="1">
+                        <span id="saturation-value">1</span>
+                    </div>
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="vibrance">Vibrance:</label>
+                            <button class="reset-button button" data-target="vibrance" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="vibrance" min="0.6" max="1.4" step="0.1" value="1">
+                        <span id="vibrance-value">1</span>
+                    </div>
+                    <div class="control-group-c">
+                        <label for="grayscale">Grayscale:</label>
+                        <input type="checkbox" id="grayscale" name="grayscale" class="rounded-checkbox">
+                    </div>
+                </div>
+                <div class="controls-bottom">
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="global_threshold">Global Threshold Value:</label>
+                            <button class="reset-button button" data-target="global_threshold" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="global_threshold" name="global_threshold" min="0" max="255" step="1" value="128">
+                        <span id="global_threshold-value">128</span>
+                    </div>
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="adaptive_threshold">Adaptive Threshold:</label>
+                            <button class="reset-button button" data-target="adaptive_threshold" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="adaptive_threshold" name="adaptive_threshold" min="0" max="20" step="1" value="0">
+                        <span id="adaptive_threshold-value">0</span>
+                    </div>
+                    <div class="control-group-c">
+                        <label for="otsu_threshold">Otsu's Thresholding:</label>
+                        <input type="checkbox" id="otsu_threshold" name="otsu_threshold" class="rounded-checkbox">
+                    </div>
+                    <div class="control-group-c">
+                        <label for="apply_hsv">Enable HSV Threshold:</label>
+                        <input type="checkbox" id="apply_hsv" name="apply_hsv" class="rounded-checkbox">
+                    </div>
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="lower_hue">Lower Hue:</label>
+                            <button class="reset-button button" data-target="lower_hue" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="lower_hue" name="lower_hue" min="0" max="179" step="1" value="0" disabled>
+                        <span id="lower_hue-value">0</span>
+                    </div>
+                    <div class="control-group">
+                        <div class="label-reset">
+                            <label for="upper_hue">Upper Hue:</label>
+                            <button class="reset-button button" data-target="upper_hue" disabled>Reset</button>
+                        </div>
+                        <input type="range" id="upper_hue" name="upper_hue" min="0" max="179" step="1" value="179" disabled>
+                        <span id="upper_hue-value">179</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img id="preview" src="#" alt="Processed Image" class="flex-item" style="display: none;">
+    </div>
+    <div id="feedback-message" style="display: none;"></div>
+    <div class="fixed-text">
+        by bugramurat
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
