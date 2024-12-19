@@ -1,6 +1,6 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
 FROM python:3-slim
-LABEL org.opencontainers.image.source=https://github.com/bugramurat/real-time-image-processing-app
+LABEL org.opencontainers.image.source https://github.com/bugramurat/real-time-image-processing-app
 
 EXPOSE 5002
 
