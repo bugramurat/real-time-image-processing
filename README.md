@@ -23,5 +23,7 @@ docker run --rm -p 5002:5002 container_name
 - opencv-python
 - numpy
 
+<br></br>
+*For further information: bugramurat4444@gmail.com*
 ## 
 ![example](https://i.ibb.co/Lgt74Gk/processed-original-image.jpg)
